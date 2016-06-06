@@ -119,7 +119,7 @@ class CompletionFinder(object):
         self.default_completer = default_completer
 
     def __call__(self, argument_parser, always_complete_options=True, exit_method=os._exit, output_stream=None,
-                 exclude=None, validator=None, print_suppressed=False):
+                 exclude=None, validator=None, print_suppressed=False, default_completer=FilesCompleter()):
         """
         :param argument_parser: The argument parser to autocomplete on
         :type argument_parser: :class:`argparse.ArgumentParser`
@@ -151,7 +151,7 @@ class CompletionFinder(object):
         added to argcomplete.safe_actions, if their values are wanted in the ``parsed_args`` completer argument, or their
         execution is otherwise desirable.
         """
-        self.__init__(argument_parser, always_complete_options, exclude, validator, print_suppressed)
+        self.__init__(argument_parser, always_complete_options, exclude, validator, print_suppressed, default_completer)
 
         if "_ARGCOMPLETE" not in os.environ:
             # not an argument completion invocation
